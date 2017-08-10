@@ -19,7 +19,11 @@ describe('Retracer', function() {
 
     describe('retrace', function() {
         it('should return string', function() {
-            assert.equal(typeof "", typeof Retracer.retrace(""));
+            assert.equal(typeof "", typeof Retracer.retrace("", {}));
+        });
+
+        it('should return the actual class name from mappings', function() {
+            assert.equal("com.example.test.TestClass", Retracer.retrace("o.wM", Retracer.generateMap(mappingFile1)));
         });
     });
 });

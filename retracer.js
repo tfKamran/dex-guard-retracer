@@ -15,8 +15,14 @@
         return mappings;
     }
 
-    function retrace(log, mapping) {
-        return log;
+    function retrace(logs, mappings) {
+        const symbols = Object.keys(mappings);
+
+        symbols.forEach(symbol => {
+            logs = logs.split(symbol).join(mappings[symbol].class);
+        });
+
+        return logs;
     }
 
     module.exports = {
