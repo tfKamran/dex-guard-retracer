@@ -1,0 +1,27 @@
+{
+  "name": "dex-guard-retracer",
+  "version": "0.0.1",
+  "description": "A tool to retrace encrypted logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfKamran/dex-guard-retracer.git"
+  },
+  "keywords": [
+    "DexGuard",
+    "Retrace"
+  ],
+  "author": "tfKamran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tfKamran/dex-guard-retracer/issues"
+  },
+  "homepage": "https://github.com/tfKamran/dex-guard-retracer#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "mocha": "^3.5.0"
+  }
+}
