@@ -39,5 +39,9 @@ describe('Retracer', function() {
         it('should return the actual class name from mappings when there are similar symbols', function() {
             assert.equal("com.example.test.TestClass.run()", Retracer.retrace("o.wM.run()", Retracer.generateMap(mappingFile1)));
         });
+
+        it('should return the actual method name from mappings', function() {
+            assert.equal("com.example.test.AnotherClass.[void checkSelfPermission(android.content.Context,java.lang.String):125:126] ()", Retracer.retrace("o.w.ˋ ()", Retracer.generateMap(mappingFile1)));
+        });
     });
 });

@@ -29,12 +29,26 @@
     function retrace(logs, mappings) {
         const symbols = Object.keys(mappings);
 
+        var lines = logs.split("\n");
+
         symbols.forEach(symbol => {
-            logs = logs.split(symbol + ".").join(mappings[symbol].class + ".");
-            logs = logs.split(symbol + "$").join(mappings[symbol].class + "$");
+            lines = lines.map(line => {
+                if (line.indexOf(symbol + ".") != -1 || line.indexOf(symbol + "$") != -1) {
+                    line = line.split(symbol + ".").join(mappings[symbol].class + ".");
+                    line = line.split(symbol + "$").join(mappings[symbol].class + "$");
+
+                    const members = Object.keys(mappings[symbol].members);
+                    members.forEach(member => {
+                        line = line.split("." + member).join("." + "[" + mappings[symbol].members[member].name + "]");
+                        line = line.split("$" + member).join("$" + "[" + mappings[symbol].members[member].name + "]");
+                    });
+                }
+
+                return line;
+            });
         });
 
-        return logs;
+        return lines.join("\n");
     }
 
     String.prototype.nthIndexOf = function(string, n) {
