@@ -5,6 +5,7 @@ const mappingFile1 = "com.example.test.AnotherClass -> o.w:\n"
     + "    java.lang.String TAG -> `\n"
     + "    android.content.Context mContext -> ,\n"
     + "    android.net.Uri mContentUri -> .\n"
+    + "    52429:52430:void checkSelfPermission(android.content.Context,java.lang.String):125:126 -> ˋ\n"
     + "com.example.test.TestClass -> o.wM:\n"
     + "    java.lang.String TAG -> ॱ\n"
     + "    android.content.Context mContext -> ˏ\n"
@@ -18,6 +19,11 @@ describe('Retracer', function() {
 
         it('should interpret class name when raw mappings are provided', function() {
             assert.equal("com.example.test.TestClass", Retracer.generateMap(mappingFile1)["o.wM"].class);
+        });
+
+        it('should interpret member methods when raw mappings are provided', function() {
+            assert.equal("void checkSelfPermission(android.content.Context,java.lang.String):125:126",
+                Retracer.generateMap(mappingFile1)["o.w"].members['ˋ'].name);
         });
     });
 
