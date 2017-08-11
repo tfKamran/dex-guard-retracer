@@ -19,7 +19,8 @@
         const symbols = Object.keys(mappings);
 
         symbols.forEach(symbol => {
-            logs = logs.split(symbol).join(mappings[symbol].class);
+            logs = logs.split(symbol + ".").join(mappings[symbol].class + ".");
+            logs = logs.split(symbol + "$").join(mappings[symbol].class + "$");
         });
 
         return logs;

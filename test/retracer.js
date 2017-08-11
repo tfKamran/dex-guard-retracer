@@ -1,7 +1,11 @@
 const assert = require('assert');
 const Retracer = require('../retracer');
 
-const mappingFile1 = "com.example.test.TestClass -> o.wM:\n"
+const mappingFile1 = "com.example.test.AnotherClass -> o.w:\n"
+    + "    java.lang.String TAG -> `\n"
+    + "    android.content.Context mContext -> ,\n"
+    + "    android.net.Uri mContentUri -> .\n"
+    + "com.example.test.TestClass -> o.wM:\n"
     + "    java.lang.String TAG -> ॱ\n"
     + "    android.content.Context mContext -> ˏ\n"
     + "    android.net.Uri mContentUri -> ˎ\n";
@@ -23,7 +27,11 @@ describe('Retracer', function() {
         });
 
         it('should return the actual class name from mappings', function() {
-            assert.equal("com.example.test.TestClass", Retracer.retrace("o.wM", Retracer.generateMap(mappingFile1)));
+            assert.equal("com.example.test.AnotherClass.run()", Retracer.retrace("o.w.run()", Retracer.generateMap(mappingFile1)));
+        });
+
+        it('should return the actual class name from mappings when there are similar symbols', function() {
+            assert.equal("com.example.test.TestClass.run()", Retracer.retrace("o.wM.run()", Retracer.generateMap(mappingFile1)));
         });
     });
 });
