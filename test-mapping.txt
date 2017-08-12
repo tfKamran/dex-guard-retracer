@@ -1,0 +1,10 @@
+com.example.test.AnotherClass -> o.w:
+    java.lang.String TAG -> `
+    android.content.Context mContext -> ,
+    android.net.Uri mContentUri -> .
+com.example.test.TestClass -> o.wM:
+    java.lang.String TAG -> ॱ
+    android.content.Context mContext -> ˏ
+    android.net.Uri mContentUri -> ˎ
+    52429:52430:void com.example.test.AnotherClass.checkSelfPermission(android.content.Context,java.lang.String):125:126 -> ˋ
+    321:325:void com.example.test.AnotherClass.doSomething():404:409 -> ˋ
