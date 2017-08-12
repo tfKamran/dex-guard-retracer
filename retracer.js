@@ -25,8 +25,6 @@
             }
         };
 
-        console.log(JSON.stringify(mappings));
-
         return mappings;
     }
 
@@ -42,9 +40,14 @@
                     line = line.split(symbol + "$").join(mappings[symbol].class + "$");
 
                     const members = Object.keys(mappings[symbol].members);
+                    const lineNumber = line.indexOf(":") != -1 ? +line.split(":")[1].replace(")", "") : -1;
+
                     members.forEach(member => {
-                        line = line.split("." + member.split(":")[2] + "(:" + member.split(":")[0] + ")").join("." + "[" + mappings[symbol].members[member].name + "]()");
-                        line = line.split("$" + member.split(":")[2] + "(:" + member.split(":")[0] + ")").join("$" + "[" + mappings[symbol].members[member].name + "]()");
+                        if (lineNumber >= +member.split(":")[0] && lineNumber <= +member.split(":")[1]) {
+                            line = line.split("." + member.split(":")[2])
+                                    .join("." + "[" + mappings[symbol].members[member].name + "]")
+                                    .replace(":" + lineNumber, "");
+                        }
                     });
                 }
 

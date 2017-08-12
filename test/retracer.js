@@ -42,7 +42,13 @@ describe('Retracer', function() {
         });
 
         it('should return the actual method name from mappings', function() {
-            assert.equal("com.example.test.AnotherClass.[void checkSelfPermission(android.content.Context,java.lang.String):125:126]()", Retracer.retrace("o.w.ˋ(:52429)", Retracer.generateMap(mappingFile1)));
+            assert.equal("com.example.test.AnotherClass.[void checkSelfPermission(android.content.Context,java.lang.String):125:126]()",
+                Retracer.retrace("o.w.ˋ(:52429)", Retracer.generateMap(mappingFile1)));
+        });
+
+        it('should return the actual method name from mappings when line number is within range', function() {
+            assert.equal("com.example.test.AnotherClass.[void com.example.test.AnotherClass.doSomething():404:409]()",
+                Retracer.retrace("o.w.ˋ(:322)", Retracer.generateMap(mappingFile1)));
         });
     });
 });
