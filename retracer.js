@@ -66,7 +66,7 @@
     };
 
     module.exports = {
-        retrace,
-        generateMap
+        "retrace": retrace,
+        "generateMap": generateMap
     }
 })();
