@@ -33,15 +33,15 @@
 
         var lines = logs.split("\n");
 
-        symbols.forEach(symbol => {
-            lines = lines.map((line, lineIndex) => {
+        symbols.forEach(function(symbol) {
+            lines = lines.map(function(line, lineIndex) {
                 if (line.indexOf(symbol + ".") != -1 || line.indexOf(symbol + "$") != -1 || line.indexOf(symbol + " ") != -1) {
                     line = line.split(symbol).join(mappings[symbol].class);
 
                     const members = Object.keys(mappings[symbol].members);
                     const lineNumber = line.indexOf(":") != -1 ? +line.split(":")[1].replace(")", "") : -1;
 
-                    members.forEach(member => {
+                    members.forEach(function(member) {
                         if (lineNumber >= +member.split(":")[0] && lineNumber <= +member.split(":")[1]) {
                             line = line.split("." + member.split(":")[2])
                                     .join("." + "[" + mappings[symbol].members[member].name + "]")
