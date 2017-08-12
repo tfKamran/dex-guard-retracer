@@ -8,7 +8,7 @@
             const line = lines[index];
             const split = line.split(" -> ");
 
-            if (!line.startsWith("    ")) {
+            if (line.indexOf("    ") != 0) {
                 lastMappedClassSymbol = split[1].substring(0, split[1].length - 1);
                 mappings[lastMappedClassSymbol] = { "class": split[0] };
             } else {
