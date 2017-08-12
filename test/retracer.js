@@ -6,6 +6,7 @@ const mappingFile1 = "com.example.test.AnotherClass -> o.w:\n"
     + "    android.content.Context mContext -> ,\n"
     + "    android.net.Uri mContentUri -> .\n"
     + "    52429:52430:void checkSelfPermission(android.content.Context,java.lang.String):125:126 -> ˋ\n"
+    + "    321:325:void com.example.test.AnotherClass.doSomething():404:409 -> ˋ\n"
     + "com.example.test.TestClass -> o.wM:\n"
     + "    java.lang.String TAG -> ॱ\n"
     + "    android.content.Context mContext -> ˏ\n"
@@ -23,7 +24,7 @@ describe('Retracer', function() {
 
         it('should interpret member methods when raw mappings are provided', function() {
             assert.equal("void checkSelfPermission(android.content.Context,java.lang.String):125:126",
-                Retracer.generateMap(mappingFile1)["o.w"].members['ˋ'].name);
+                Retracer.generateMap(mappingFile1)["o.w"].members['52429:52430:ˋ'].name);
         });
     });
 
@@ -41,7 +42,7 @@ describe('Retracer', function() {
         });
 
         it('should return the actual method name from mappings', function() {
-            assert.equal("com.example.test.AnotherClass.[void checkSelfPermission(android.content.Context,java.lang.String):125:126] ()", Retracer.retrace("o.w.ˋ ()", Retracer.generateMap(mappingFile1)));
+            assert.equal("com.example.test.AnotherClass.[void checkSelfPermission(android.content.Context,java.lang.String):125:126]()", Retracer.retrace("o.w.ˋ(:52429)", Retracer.generateMap(mappingFile1)));
         });
     });
 });
