@@ -1,6 +1,6 @@
 {
   "name": "dex-guard-retracer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool to retrace encrypted logs",
   "main": "index.js",
   "bin": {
