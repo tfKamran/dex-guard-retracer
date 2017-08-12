@@ -15,7 +15,9 @@
   },
   "keywords": [
     "DexGuard",
-    "Retrace"
+    "Retrace",
+    "Fabric",
+    "Crashlytics"
   ],
   "author": "tfKamran",
   "license": "MIT",
