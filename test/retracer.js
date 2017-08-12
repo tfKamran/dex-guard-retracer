@@ -10,7 +10,8 @@ const mappingFile1 = "com.example.test.AnotherClass -> o.w:\n"
     + "com.example.test.TestClass -> o.wM:\n"
     + "    java.lang.String TAG -> ॱ\n"
     + "    android.content.Context mContext -> ˏ\n"
-    + "    android.net.Uri mContentUri -> ˎ\n";
+    + "    android.net.Uri mContentUri -> ˎ\n"
+    + "    512:515:com.example.test.TestClass doSomethingElse():202:205 -> ˋ\n";
 
 describe('Retracer', function() {
     describe('generateMap', function() {
@@ -49,6 +50,11 @@ describe('Retracer', function() {
         it('should return the actual method name from mappings when line number is within range', function() {
             assert.equal("com.example.test.AnotherClass.[void com.example.test.AnotherClass.doSomething():404:409]()",
                 Retracer.retrace("o.w.ˋ(:322)", Retracer.generateMap(mappingFile1)));
+        });
+
+        it('should retrace class names in the log summary', function() {
+            assert.equal("java.lang.RuntimeException: Unable to resume activity {com.example.test/.MainActivity}: java.lang.NullPointerException: Attempt to read from field 'com.example.test.TestClass com.example.test.TestClass.ˋ' on a null object reference",
+                Retracer.retrace("java.lang.RuntimeException: Unable to resume activity {com.example.test/.MainActivity}: java.lang.NullPointerException: Attempt to read from field 'o.wM com.example.test.TestClass.ˋ' on a null object reference", Retracer.generateMap(mappingFile1)));
         });
     });
 });

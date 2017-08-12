@@ -34,10 +34,9 @@
         var lines = logs.split("\n");
 
         symbols.forEach(symbol => {
-            lines = lines.map(line => {
-                if (line.indexOf(symbol + ".") != -1 || line.indexOf(symbol + "$") != -1) {
-                    line = line.split(symbol + ".").join(mappings[symbol].class + ".");
-                    line = line.split(symbol + "$").join(mappings[symbol].class + "$");
+            lines = lines.map((line, lineIndex) => {
+                if (line.indexOf(symbol + ".") != -1 || line.indexOf(symbol + "$") != -1 || line.indexOf(symbol + " ") != -1) {
+                    line = line.split(symbol).join(mappings[symbol].class);
 
                     const members = Object.keys(mappings[symbol].members);
                     const lineNumber = line.indexOf(":") != -1 ? +line.split(":")[1].replace(")", "") : -1;
