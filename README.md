@@ -5,7 +5,7 @@
 
 [![NPM](https://nodei.co/npm/dex-guard-retracer.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/dex-guard-retracer/)
 
-A tool to retrace encrypted crash logs, especially for DexGuarded Android applications.
+A tool to retrace encrypted crash logs, especially for DexGuarded Android applications. The retrace tool that comes within DexGuard package fails to decrypt crash logs found from differently presented logs, like on Fabric Crashlytics. You can decrypt such logs too using this tool!
 
 ## How to install?
 
