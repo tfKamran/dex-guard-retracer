@@ -27,6 +27,6 @@
   "homepage": "https://github.com/tfKamran/dex-guard-retracer#readme",
   "dependencies": {
     "fs": "0.0.1-security",
-    "mocha": "^6.1.4"
+    "mocha": "^6.2.0"
   }
 }
